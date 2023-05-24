@@ -1,0 +1,114 @@
+<body style="background-color: #1f2122;">
+<section class="gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">wishlist - {{productsCount}} items</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+
+            {{#each wishlistdata}}
+
+                <!-- Single item -->
+                <div class="row">
+                  <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <!-- Image -->
+                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                      <img src="/product-images/{{image}}"
+                        class="w-100" />
+                      <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                      </a>
+                    </div>
+                    <!-- Image -->
+                  </div>
+    
+                  <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->
+                  <p style="margin-bottom: 2rem; font-size: 25px;"><strong
+                    >{{name}}</strong></p>
+                  <p>Category: {{category}}</p>
+                  <p style="color: #e75e8d;">Limited Stock Only</p>
+                  <button
+                    class="btn btn-primary px-3 me-2"
+                    style="background-color: #ffffff; box-shadow:0 0px 0px 0px #ffffff; color: #e75e8d;"
+                    onclick="location.href = '/deletewish/{{_id}}'"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button
+                    class="btn btn-primary px-3 me-2"
+                    style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d; padding: 6.5px 0px;"
+                    onclick="addToCart('{{_id}}');"
+                  >
+                    Add to cart 
+                  </button>
+                  <!-- Data -->
+                </div>
+    
+                  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Price -->
+                  <h6 class="text-start text-md-center">
+                    <strong>₹ {{qnprice}}</strong>
+                  </h6>
+                  <p
+                    class="text-start text-md-center"
+                    style="text-decoration:line-through;"
+                  >₹ {{qndisprice}}</p>
+                  <!-- Price -->
+                  </div>
+                </div>
+                <!-- Single item -->
+    
+                <hr class="my-4" />
+
+                {{/each}}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/javascripts/notify.js"></script>
+
+  <script>
+function addToCart(productId) {
+  $.ajax({
+    type: "POST",
+    url: "/addtocart/" + productId,
+    success: function(data) {
+      // handle success response
+      notify.addNotification({
+          type: "success",
+          title: "Success!",
+          message: "Product added to cart"
+       });
+      $('#' + productId).text('Go to cart')
+        .attr('onclick', "location.href='/gocart'");
+    setTimeout(() => {
+     location.href="/gowish";
+    }, 1000);
+    },
+    error: function(xhr, status, error) {
+      // handle error response
+      notify.addNotification({
+          type: "error",
+          title: "Error!",
+          message: "Login your account"
+       });
+    }
+  });
+}
+  </script>

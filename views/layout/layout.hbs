@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <!--user-->
+    {{#if user}}
+    {{>user-head}}
+    {{/if}}
+    
+    {{#if signup}}
+    {{>user-head}}
+    {{/if}}
+
+    {{#if otp}}
+    {{>user-head}}
+    {{/if}}
+
+    {{#if checkout}}
+    {{>user-head}}
+    {{/if}}
+
+    {{#if single}}
+    {{>user-head}}
+    {{/if}}
+
+    {{#if confirmation}}
+    {{>user-head}}
+    {{/if}}
+
+    {{#if cart}}
+    {{>user-head}}
+    {{/if}}
+
+    <!-- admin -->
+    {{#if adHome}}
+    {{>admin-head}}
+    {{/if}}
+  </head>
+  <body>
+    <!--user-->
+    {{#if user}}
+    {{>user-nav}}
+    {{/if}}
+
+    {{#if single}}
+    {{>user-nav}}
+    {{/if}}
+
+    <!--admin-->
+    {{#if adHome}}
+    {{>admin-nav}}
+    {{/if}}
+    
+    {{{body}}}
+
+    <!--user-->
+    {{#if user}}
+    {{>user-footer}}
+    {{/if}}
+    
+    <!--user-->
+    {{#if user}}
+    {{>user-script}}
+    {{/if}}
+
+    {{#if otp}}
+    {{>user-script}}
+    {{/if}}
+
+    <!--admin-->
+    {{#if adHome}}
+    {{>admin-script}}
+    {{/if}}
+  </body>
+</html>

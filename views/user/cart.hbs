@@ -1,0 +1,272 @@
+<body style="background-color: #1f2122;">
+<section class="gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">Cart - {{productsCount}} items</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+          {{#if cartlist.length}}
+            {{#each cartlist}}
+
+              <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <!-- Image -->
+                  <div
+                    class="bg-image hover-overlay hover-zoom ripple rounded"
+                    data-mdb-ripple-color="light"
+                  >
+                    <img src="/product-images/{{image}}" class="w-100" />
+                    <a href="#!">
+                      <div
+                        class="mask"
+                        style="background-color: rgba(251, 251, 251, 0.2)"
+                      ></div>
+                    </a>
+                  </div>
+                  <!-- Image -->
+                </div>
+
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->
+                  <p style="margin-bottom: 2rem; font-size: 25px;"><strong
+                    >{{name}}</strong></p>
+                  <p>Category: {{category}}</p>
+                  <p id="stockStatus{{_id}}" style="color: #e75e8d;">Limited Stock Only</p>
+                  <button
+                    class="btn btn-primary px-3 me-2"
+                    style="background-color: #ffffff; box-shadow:0 0px 0px 0px #ffffff; color: #e75e8d;"
+                    onclick="location.href = '/delete/{{_id}}'"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button id="add-to-wishlist-btn-{{_id}}" class="btn btn-primary px-3 me-2" style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d;" onclick="addToWish('{{_id}}');">
+                    <i class="fas fa-heart"></i>
+                  </button>
+                  <!-- Data -->
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Quantity -->
+                  <div class="d-flex mb-4" style="max-width: 170px">
+                    <button
+                      class="btn btn-primary px-3 me-2"
+                      style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d;"
+                      onclick="decrement('{{_id}}','{{_id}}');"
+                    >
+                      <i class="fas fa-minus"></i>
+                    </button>
+
+                    <div class="form-outline">
+                      <input
+                        id="form1_{{_id}}"
+                        min="1"
+                        name="quantity"
+                        value="{{quantity}}"
+                        type="number"
+                        class="form-control"
+                        style="color: #fff"
+                      />
+                      <label
+                        class="form-label"
+                        for="form1"
+                        style="color: #fff"
+                      >Quantity</label>
+                    </div>
+
+                    <button
+                      class="btn btn-primary px-3 ms-2"
+                      style="background-color: hsl(339, 74%, 64%); box-shadow:0 0px 0px 0px #e75e8d;"
+                      onclick="increment('{{_id}}','{{_id}}');"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <!-- Quantity -->
+
+                  <!-- Price -->
+                  <h6 class="text-start text-md-center">
+                    <strong>₹ <span id="price_{{_id}}">{{qnprice}}</span></strong>
+                  </h6>
+                  <p
+                    class="text-start text-md-center"
+                    style="text-decoration:line-through;"
+                  >
+                    ₹ <span id="discounted_price_{{_id}}">{{qndisprice}}</span>
+                  </p>
+                  <!-- Price -->
+                </div>
+              </div>
+
+              <hr class="my-4" />
+
+            {{/each}}
+            {{else}}
+                  <div class="PageResults__container">
+                    <div class="search-empty-img">
+                      <img style="max-width: 500px;" src="/images/empty.png" />
+                      <br />
+                      <h4>Product not found</h4>
+                    </div>
+                  </div>
+          {{/if}}
+
+          </div>
+        </div>
+      </div>
+      {{#if cartlist.length}}
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                style="background-color: #27292a; color: #fff;"
+              >
+                Products
+                ₹ <span id="products-price">{{totalprice}}</span>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center px-0"
+                style="background-color: #27292a; color: #fff;"
+              >
+                Shipping
+                <span>Gratis</span>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+                style="background-color: #27292a; color: #fff;"
+              >
+                <div>
+                  <strong>Total amount</strong>
+                  <strong>
+                    <p class="mb-0">(including VAT)</p>
+                  </strong>
+                </div>
+                <strong>₹ <span id="total-price">{{totalprice}}</span></strong>
+              </li>
+            </ul>
+
+            <button
+              type="button"
+              class="btn btn-primary btn-lg btn-block"
+              style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d;"
+              onclick="location.href='/gocheckout'"
+            >
+              Go to checkout
+            </button>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</section>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/javascripts/notify.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+<script>
+const decrement = function(id, quantity){
+  console.log('this is decrement-----');
+  const value = document.getElementById('form1_' + id).value;
+  
+  $.ajax({
+    url:'/minus',
+    method:'patch',
+    data:{
+      id: id,
+      quantity: quantity
+    }
+  
+  }).done((value)=>{
+    console.log('working properly-----',value.data);
+    
+    $('#form1_' + id).val(value.data.quantity);
+    $('#price_' + id).text(value.data.qnprice);
+    $('#discounted_price_' + id).text(value.data.qndisprice);
+
+    // Update the total price element in the cart with the updated total price value
+    document.getElementById("products-price").innerHTML = value.updatedTotalPrice;
+    document.getElementById("total-price").innerHTML = value.updatedTotalPrice;
+    $('#stockStatus'+id).html("Limited Stock Only");
+  });
+};
+
+const increment = function(id, quantity){
+  console.log('this is increment-----');
+  const value = document.getElementById('form1_' + id).value;
+  
+  $.ajax({
+    url:'/plus',
+    method:'patch',
+    data:{
+      id: id,
+      quantity: quantity
+    }
+   
+  }).done((value)=>{
+    if(value.status){
+  console.log('working properly-----', value.data);
+    
+    $('#form1_' + id).val(value.data.quantity);
+    $('#price_' + id).text(value.data.qnprice);
+    $('#discounted_price_' + id).text(value.data.qndisprice);
+
+    // Update the total price element in the cart with the updated total price value
+    document.getElementById("products-price").innerHTML = value.updatedTotalPrice;
+    document.getElementById("total-price").innerHTML = value.updatedTotalPrice;
+     $('#stockStatus'+id).html("Limited Stock Only");
+    }
+  
+    // Check if the product is out of stock
+    if (value.status === false) {
+     console.log(value.message)
+     $('#stockStatus'+id).html(value.message);
+    }
+  });
+};
+
+async function addToWish(productId) {
+  try {
+    const response = await $.ajax({
+      type: "POST",
+      url: "/addtowish/" + productId
+    });
+    notify.addNotification({
+      type: "success",
+      title: "Success!",
+      message: "Product added to wishlist"
+    });
+    setTimeout(() => {
+     location.href="/gocart";
+    }, 1000);
+   
+  } catch (error) {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Login to your account"
+    });
+  }
+}
+</script>

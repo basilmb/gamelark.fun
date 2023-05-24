@@ -1,0 +1,400 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-profile">
+              <div class="row">
+                <div class="col-lg-4">
+                  <img
+                    src="/users-image/{{userData.image.[0]}}"
+                    alt=""
+                    style="border-radius: 23px; width: 80%;"
+                  />
+                </div>
+                <div class="col-lg-4 align-self-center">
+                  <div class="main-info header-text">
+                    <h4>{{userData.name}}</h4>
+                    <p>Email
+                      <span
+                        style="margin-left: 10px;"
+                      >{{userData.email}}</span></p>
+                    <p>Phone
+                      <span
+                        style="margin-left: 10px;"
+                      >{{userData.number}}</span></p>
+                    <div class="main-border-button">
+                      <button
+                        onclick="location.href='/logout'"
+                        id="logout-button"
+                      >logout</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 align-self-center">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5>Wallet</h5>
+                      <div class="row">
+                        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                          <div
+                            class="d-flex d-sm-block d-md-flex align-items-center"
+                          >
+                            <h2 class="mb-0 py-4">₹
+                              {{userData.walletamount}}</h2>
+                          </div>
+                          <button
+                            onclick="location.href='/wallethistory'"
+                            class="btn-prim btn-block text-uppercase"
+                          >
+                            View History
+                          </button>
+                        </div>
+                        <div
+                          class="col-4 col-sm-12 col-xl-4 text-center text-xl-right"
+                        >
+                          <i
+                            class="fa-solid fa-wallet"
+                            style="font-size: 3.75rem; color: #e75e8d"
+                          ></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clips">
+                <div class="col-lg-12">
+                  <div class="heading-section mt-5">
+                    <h4><em>User</em> Details</h4>
+                  </div>
+                </div>
+                <div class="row tm-content-row" style="margin-top: 55px;">
+                  <div class="tm-block-col tm-col-avatar">
+                    <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+                      <h2 class="tm-block-title">Add Image</h2>
+                      <div class="tm-avatar-container">
+                        <img
+                          src="/images/browse-files.png"
+                          alt="Avatar"
+                          class="tm-avatar img-fluid"
+                          style="position: relative; margin-bottom: 15px;"
+                        />
+                        <form
+                          method="post"
+                          action="/userimage"
+                          enctype="multipart/form-data"
+                          class="tm-signup-form row"
+                        >
+                          <div class="form-group">
+                            <input
+                              id="image"
+                              name="image"
+                              type="file"
+                              class="form-control validate"
+                              style="position: absolute; top: 0px; left: 0; opacity: 0; cursor: pointer; padding: 150px 0px;"
+                              multiple
+                              accept="image/jpeg, image/png"
+                            />
+                          </div>
+                          <div class="form-group col-lg-6">
+                            <input
+                              type="hidden"
+                              class="form-input"
+                              name="email"
+                              id="email"
+                              value={{logdata.email}}
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            class="btn-prim btn-block text-uppercase"
+                          >
+                            Upload Image
+                          </button>
+                        </form>
+                        {{#if imgerr}}
+                          <div class="error-message">Invalid file type. Only
+                            JPEG and PNG images are allowed.</div>
+                        {{/if}}
+                        {{#if notimg}}
+                          <div class="error-message">Image not found</div>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tm-block-col tm-col-account-settings">
+                    <div
+                      class="tm-bg-primary-dark tm-block tm-block-settings"
+                      style="border-radius: 0.25rem;"
+                    >
+                      <h2 class="tm-block-title">Enter Address</h2>
+                      <form
+                        method="post"
+                        action="/userdetails"
+                        class="tm-signup-form row"
+                        id="user-details-form"
+                      >
+                        <div class="form-group col-lg-6">
+                          <label for="fullname">Full Name</label>
+                          <input
+                            id="fullname"
+                            name="fullname"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="email">Email</label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="address">Address</label>
+                          <input
+                            id="address"
+                            name="address"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="city">City</label>
+                          <input
+                            id="city"
+                            name="city"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="state">State</label>
+                          <input
+                            id="state"
+                            name="state"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="zip">Zip</label>
+                          <input
+                            id="zip"
+                            name="zip"
+                            type="text"
+                            class="form-control validate"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <input
+                            type="hidden"
+                            class="form-input"
+                            name="hemail"
+                            id="hemail"
+                            value={{logdata.email}}
+                          />
+                        </div>
+                        <div class="col-12 pt-4">
+                          <button
+                            type="submit"
+                            class="btn-prim btn-block text-uppercase w-100"
+                          >
+                            Add Details
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="clips">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="heading-section mt-5">
+                          <h4><em>Order</em> History</h4>
+                        </div>
+                      </div>
+                      <div class="container mt-4 px-5">
+                        <div style="height: 400px; overflow: auto;">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Odrer ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Cancel</th>
+                                <th>Return</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each orders}}
+                                <tr>
+                                  <td>#{{orderid}}</td>
+                                  <td>{{date}}</td>
+                                  {{#if canceled}}
+                                    <td>
+                                      <span style="color: red ;"></span>
+                                      canceled
+                                    </td>
+                                  {{else}}
+                                    {{#if status}}
+                                      <td>
+                                        <span
+                                          class="active-circle bg-success"
+                                        ></span>
+                                        delivered
+                                      </td>
+                                    {{else}}
+                                      <td>
+                                        <span
+                                          class="active-circle bg-danger"
+                                        ></span>
+                                        processing
+                                      </td>
+                                    {{/if}}
+                                  {{/if}}
+                                  {{#if status}}
+                                    <td>
+                                      <button
+                                        class="btng"
+                                        style="opacity: 50%;"
+                                        disabled
+                                      >Cancel</button>
+                                    </td>
+                                  {{else}}
+                                    <td>
+                                      <button
+                                        class="btng"
+                                        onclick="location.href='/cancel/{{_id}}'"
+                                      >Cancel</button>
+                                    </td>
+                                  {{/if}}
+                                  {{#if status}}
+                                    {{#if request}}
+                                      <td>
+                                        {{#if return}}
+                                          <span>accepted</span>
+                                        {{else}}
+                                          <span>rejected</span>
+                                        {{/if}}
+                                      </td>
+                                    {{else}}
+                                      <td>
+                                        <button
+                                          id="returnBtn"
+                                          class="btng"
+                                          onclick="location.href='/return/{{_id}}'"
+                                        >Return</button>
+                                      </td>
+                                    {{/if}}
+                                  {{else}}
+                                    <td>
+                                      <button
+                                        class="btng"
+                                        style="opacity: 50%;"
+                                        disabled
+                                      >Return</button>
+                                    </td>
+                                  {{/if}}
+                                  <td>
+                                    <button
+                                      class="btn"
+                                      onclick="location.href='/vieworders/{{_id}}'"
+                                    >view</button>
+                                  </td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ***** Banner End ***** -->
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  const form = document.querySelector('#user-details-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    
+    const formData = new FormData(form);
+    const url = '/userdetails';
+    
+    try {
+      if (formData.size === 0 || !form.checkValidity()) {
+        // Check if form data is null or form is empty
+        throw new Error('Please fill out all required fields');
+      }
+      
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('There was an error submitting the form');
+      }
+      
+      const data = await response.json();
+      console.log(data);
+      location.href = '/profile';
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      
+      if (!form.querySelector('.error-message')) {
+        const errorMessage = document.createElement('p');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = error.message;
+        form.appendChild(errorMessage);
+      }
+    }
+  });
+</script>
+
+<script>
+  // Get the current date
+  var currentDate = new Date();
+
+  // Get the date the button was rendered (replace 'buttonRenderedDate' with the actual date)
+  var buttonRenderedDate = new Date('2023-05-10'); // Example date, replace with your actual date
+
+  // Calculate the time difference in milliseconds
+  var timeDifference = currentDate - buttonRenderedDate;
+
+  // Define the time limit in milliseconds (2 weeks = 14 days = 14 * 24 * 60 * 60 * 1000)
+  var timeLimit = 14 * 24 * 60 * 60 * 1000;
+
+  // Check if the time difference exceeds the time limit
+  if (timeDifference >= timeLimit) {
+    // Disable the button
+    var returnBtn = document.getElementById('returnBtn');
+    returnBtn.disabled = true;
+  }
+</script>

@@ -1,0 +1,109 @@
+<div class="w-100" id="home" style="background-color: #1f2122;">
+      <div class="container mt-5">
+        <!-- row -->
+        <div class="row tm-content-row">
+          <div class="tm-block-col tm-col-avatar">
+            <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+              <h2 class="tm-block-title">Delete Image</h2>
+              <div class="tm-avatar-container">
+                <img
+                  src="/product-images/{{daletedata._id}}"
+                  alt="Avatar"
+                  class="tm-avatar img-fluid mb-4"
+                />
+              </div>
+              {{!-- <button class="btn btn-primary btn-block text-uppercase">
+                Delete Image
+              </button> --}}
+            </div>
+          </div>
+          <div class="tm-block-col tm-col-account-settings">
+            <div class="tm-bg-primary-dark tm-block tm-block-settings" style="border-radius: 0.25rem;">
+              <h2 class="tm-block-title">Product Settings</h2>
+              <form method="get" action="/admin/deleteit" class="tm-signup-form row">
+            <div class="form-group col-lg-6">
+              <label for="productname">Product Name</label>
+              <input
+                id="productname"
+                name="productname"
+                type="text"
+                class="form-control validate"
+                value={{daletedata.productname}}
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="category">Category</label>
+              <select
+                class="custom-select"
+                name="category"
+                style="border: 0px;
+                  background-color: #2a3038;
+                  color: #fff;"
+              >
+                <option
+                  value="{{daletedata.category.name}}"
+                >{{daletedata.category.name}}</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="price">Price</label>
+              <input
+                id="price"
+                name="price"
+                type="text"
+                class="form-control validate"
+                value={{daletedata.price}}
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="disprice">Discounted price</label>
+              <input
+                id="disprice"
+                name="disprice"
+                type="text"
+                class="form-control validate"
+                value={{daletedata.disprice}}
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="discription">Discription</label>
+              <input
+                id="discription"
+                name="discription"
+                type="text"
+                class="form-control validate"
+                value={{daletedata.discription}}
+              />
+            </div>
+            {{!-- <div class="form-group col-lg-6">
+              <label for="image">Edit image</label>
+              <input
+                id="image"
+                name="image"
+                type="file"
+                class="form-control validate"
+              />
+            </div> --}}
+            <div class="form-group col-lg-6">
+              <input
+                type="hidden"
+                class="form-input"
+                name="id"
+                id="id"
+                value={{findOneProduct._id}}
+              />
+            </div>
+            <div class="col-12 pt-4">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block text-uppercase"
+              >
+                Delete Product
+              </button>
+            </div>
+          </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

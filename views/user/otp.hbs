@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center align-items-center container">
+  <div class="card py-5 px-3">
+    <h5 class="m-0">Email OTP verification</h5>
+    <span class="mobile-text">Enter the code we just send on your email
+      <b style="color: #e75e8d;">{{email}}</b></span>
+    <form action="/check" method="post">
+    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+      <input
+        class="m-2 text-center form-control rounded"
+        type="text"
+        id="otp-first"
+        name="first"
+        maxlength="1"
+      />
+      <input
+        class="m-2 text-center form-control rounded"
+        type="text"
+        id="otp-second"
+        name="second"
+        maxlength="1"
+      />
+      <input
+        class="m-2 text-center form-control rounded"
+        type="text"
+        id="otp-third"
+        name="third"
+        maxlength="1"
+      />
+      <input
+        class="m-2 text-center form-control rounded"
+        type="text"
+        id="otp-fourth"
+        name="fourth"
+        maxlength="1"
+      />
+      <input
+        class="m-2 text-center form-control rounded"
+        type="text"
+        id="otp-fifth"
+        name="fifth"
+        maxlength="1"
+      />
+    </div>
+    <div class="d-flex justify-content-center">
+      <button class="btn mt-4" type="submit"><a>validate</a></button>
+    </div>
+    </form>
+    {{#if err}}
+    <div class="text-center mt-4">
+    <span style="color: #ec6090;">Check your OTP</span>
+    </div>
+    {{/if}}
+    {{!-- <div class="text-center mt-4">
+      <span class="d-block mobile-text">Don't receive the code?</span><span
+        class="font-weight-bold cursor"
+        
+      >Resend</span>
+    </div> --}}
+    <div class="text-center mt-4">
+          <span class="d-block mobile-text" id="countdown"></span>
+          <a href="/resend" style="text-decoration:none"><span class="d-block mobile-text" id="resend" style="color: #e75e8d;"></span></a>
+    </div>
+  </div>
+</div>

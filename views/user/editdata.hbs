@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-profile">
+              <div class="row" style="opacity: 0; height: 0;">
+                <div
+                  class="col-lg-4 align-self-center ps-5"
+                  style="width: 50%;"
+                >
+                  <div class="main-info header-text">
+                    <p>Phone</p>
+                    <div class="main-border-button">
+                      <button
+                        onclick="location.href='/logout'"
+                        id="logout-button"
+                      >logout</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <div class="col-lg-12">
+                  <div class="heading-section mt-5">
+                    <h4><em>Edit</em> Details</h4>
+                  </div>
+                </div>
+                <div class="row tm-content-row" style="margin-top: 55px;">
+                  <div class="tm-block-col tm-col-account-settings">
+                    <div
+                      class="tm-bg-primary-dark tm-block tm-block-settings"
+                      style="border-radius: 0.25rem;"
+                    >
+                      <h2 class="tm-block-title">Enter Address</h2>
+                      <form
+                        method="post"
+                        action="/updatedetails"
+                        class="tm-signup-form row"
+                      >
+                        <div class="form-group col-lg-6">
+                          <label for="fullname">Full Name</label>
+                          <input
+                            id="fullname"
+                            name="fullname"
+                            type="text"
+                            class="form-control validate"
+                            value="{{findEditData.fullname}}"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="email">Email</label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="text"
+                            class="form-control validate"
+                            value={{findEditData.email}}
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="address">Address</label>
+                          <input
+                            id="address"
+                            name="address"
+                            type="text"
+                            class="form-control validate"
+                            value="{{findEditData.address}}"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="city">City</label>
+                          <input
+                            id="city"
+                            name="city"
+                            type="text"
+                            class="form-control validate"
+                            value={{findEditData.city}}
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="state">State</label>
+                          <input
+                            id="state"
+                            name="state"
+                            type="text"
+                            class="form-control validate"
+                            value={{findEditData.state}}
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="zip">Zip</label>
+                          <input
+                            id="zip"
+                            name="zip"
+                            type="text"
+                            class="form-control validate"
+                            value={{findEditData.zip}}
+                          />
+                        </div>
+                        
+                        <div class="form-group col-lg-6">
+                          <input
+                            type="hidden"
+                            class="form-input"
+                            name="id"
+                            id="id"
+                            value={{findEditData._id}}
+                          />
+                        </div>
+                        <div class="col-12 pt-4">
+                          <button
+                            type="submit"
+                            class="btn-prim btn-block text-uppercase w-100"
+                          >
+                            Add Details
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Banner End ***** -->
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<body style="background-color: #1f2122; color: #fff;">
+  <div id="order-print">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center"
+      id="order-heading"
+    >
+      <div class="text-uppercase text-white">
+        <p>Order detail</p>
+      </div>
+      <div class="h4">{{orderData.date}}</div>
+      <div class="pt-1 text-white">
+        {{#if orderData.status}}
+          <p>Order #{{orderData.orderId}} is currently<b> delivered</b></p>
+        {{else}}
+          <p>Order #{{orderData.orderId}} is currently<b> processing</b></p>
+        {{/if}}
+      </div>
+      <a href="/admin/orders"><div class="close">
+          <i class="fa-solid fa-xmark" style="color: #e75e8d;"></i>
+        </div></a>
+    </div>
+    <div class="wrapper bg-dark">
+
+      <div class="card-body pt-4 pb-4" style="color: #fff;">
+        {{#each orderData.products}}
+          <hr class="my-4" />
+          <!-- Single item -->
+          <div class="row">
+            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+              <!-- Data -->
+              <p style="margin-bottom: 0rem;"><strong>{{name}}</strong></p>
+              <!-- Data -->
+            </div>
+
+            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+
+            </div>
+
+            <div
+              class="col-lg-4 col-md-6 mb-4 mb-lg-0 d-flex flex-row justify-content-between"
+            >
+              <!-- Price -->
+              <span class="ps-2" style="color: grey;">x{{quantity}} </span>
+              <span class="text-start text-md-center">
+                <strong>{{qnprice}}</strong>
+              </span>
+              <!-- Price -->
+            </div>
+          </div>
+          <!-- Single item -->
+        {{/each}}
+      </div>
+
+      <div class="pt-2 border-bottom mb-3"></div>
+      <div class="d-flex justify-content-between align-items-center pl-3">
+        <div class="text-muted">Payment Method</div>
+        <div class="ml-auto">
+          <label>{{orderData.paymentmethod}}</label>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-between align-items-center py-1 pl-3 pt-3"
+      >
+        <div class="text-muted pb-4">Shipping</div>
+        <div class="ml-auto pb-4"> <label>Free</label> </div>
+      </div>
+      <!-- <div class="d-flex justify-content-between align-items-center pb-4 pl-3 border-bottom pt-3">
+            <div class="text-muted"> <button class="btn">50% Discount</button> </div>
+            <div class="ml-auto price"> -$34.94 </div>
+        </div> -->
+      <div
+        class="d-flex justify-content-between align-items-center pl-3 py-3 mb-4 border-bottom border-top"
+      >
+        <div class="text-muted"> Today's Total </div>
+        <div class="ml-auto h5">
+          <strong>{{orderData.totalamount}}</strong>
+        </div>
+      </div>
+      <div class="row border rounded p-1 my-3">
+        <div class="col-md-6 py-3">
+          <div class="d-flex flex-column align-items start">
+            <b>Billing Address</b>
+            {{#each orderData.details}}
+              <p class="text-justify pt-2">
+                <strong>{{this.fullname}}</strong><br />
+                {{this.email}}<br />
+                {{this.address}},
+                {{this.city}}<br />
+                {{this.state}},
+                {{this.zip}}
+              </p>
+            {{/each}}
+          </div>
+        </div>
+        <div class="col-md-6 py-3">
+          <div class="d-flex flex-column align-items start">
+            <b>Shipping Address</b>
+            {{#each orderData.details}}
+              <p class="text-justify pt-2">
+                <strong>{{this.fullname}}</strong><br />
+                {{this.email}}<br />
+                {{this.address}},
+                {{this.city}}<br />
+                {{this.state}},
+                {{this.zip}}
+              </p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="pl-3 font-weight-bold">Related Subsriptions</div>
+        <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
+            <div> <b>#9632</b> </div>
+            <div>December 08, 2020</div>
+            <div>Status: Processing</div>
+            <div> Total: <b> $68.8 for 10 items</b> </div>
+        </div> -->
+    </div>
+  </div>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="">
+      <button
+        onclick="printDiv('order-print')"
+        class="btn-prim btn-block text-uppercase"
+      >
+        Download
+      </button>
+    </div>
+  </div>
+</body>
+
+<script>
+  function printDiv(divName) { var printContents =
+  document.getElementById(divName).innerHTML; var originalContents =
+  document.body.innerHTML; document.body.innerHTML = printContents;
+  window.print(); document.body.innerHTML = originalContents; }
+</script>

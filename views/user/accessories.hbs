@@ -1,0 +1,292 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div
+          class="main-banner"
+          style="background-image: url(/images/accessories.png);"
+        >
+          <div class="row">
+            <div class="col-lg-7">
+              <div
+                class="header-text d-flex flex-column justify-content-center"
+                style="display: inline-block;"
+              >
+                <h4><em>Browse</em> Our Popular Accessories Here</h4>
+                <div class="s002">
+                  <form method="post" action="/searchaccessories">
+                    <div class="inner-form">
+                      <div
+                        class="input-field first-wrap"
+                        style="padding-left: 0px;"
+                      >
+                        <div class="icon-wrap">
+                          <i class="fa-solid fa-search"></i>
+                        </div>
+                        <input
+                          class="datepicker"
+                          id="search"
+                          name="search"
+                          type="text"
+                          placeholder="What are you looking for?"
+                          value="{{searchQuery}}"
+                        />
+                      </div>
+                      <div class="input-field second-wrap">
+                        <div class="icon-wrap">
+                          <p
+                            style="color: rgb(24, 20, 20); margin-right: -10px;"
+                          >Min </p>
+                        </div>
+                        <input
+                          class="datepicker"
+                          id="min"
+                          name="min"
+                          type="number"
+                          placeholder="₹0"
+                          value="{{minPrice}}"
+                        />
+                      </div>
+                      <div class="input-field third-wrap">
+                        <div class="icon-wrap">
+                          <p
+                            style="color: rgb(24, 20, 20); margin-right: -10px;"
+                          >Max </p>
+                        </div>
+                        <input
+                          class="datepicker"
+                          id="max"
+                          name="max"
+                          type="number"
+                          placeholder="₹100000"
+                          value="{{maxPrice}}"
+                        />
+                      </div>
+                      <div class="input-field fouth-wrap">
+                        <div class="icon-wrap">
+                          <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <select data-trigger="" name="choices-single-defaul">
+                          <option placeholder=""><i
+                              class="fa-solid fa-arrow-down-a-z"
+                            ></i>
+                            Ascending</option>
+                          <option><i class="fa-solid fa-arrow-up-a-z"></i>
+                            Descending</option>
+                          <option><i class="fa-solid fa-coins"></i>
+                            Low to High</option>
+                          <option><i class="fa-solid fa-coins hl"></i>
+                            High to Low</option>
+                        </select>
+                      </div>
+                      <div class="input-field fifth-wrap">
+                        <button class="btn-search" type="submit">SEARCH</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Banner End ***** -->
+
+        <!-- ***** Accessories Start ***** -->
+        <div class="most-popular">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4><em>Games</em> Zone</h4>
+              </div>
+              <div class="row" id="products">
+                {{#if accessoriesInfo.length}}
+                  {{#each accessoriesInfo}}
+                    <div class="col-lg-3 col-sm-6 px-3">
+                      <div class="item">
+                        <a href="/productview/{{_id}}">
+                          <img src="/product-images/{{image.[0]}}" alt="" />
+                        </a>
+                        <h4>{{productname}}<br /><span>₹ {{price}}</span></h4>
+                        <ul>
+                          <li><i class="fa fa-star"></i> 4.8</li>
+                          <li
+                            style="text-decoration:line-through;"
+                          >₹{{disprice}}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between w-100">
+                          {{#if stock}}
+                            <div class="main-btnw">
+                              <button
+                                onclick="addToCart('{{_id}}')"
+                                class="buttons__success"
+                                id="{{_id}}"
+                              >Add to cart</button>
+                            </div>
+                          {{else}}
+                            <div class="main-btnw">
+                              <button
+                                class="buttons__disabled"
+                                style="color: #dc3545;"
+                              >Out of stock</button>
+                            </div>
+                          {{/if}}
+                          <div class="main-btnp">
+                            <button
+                              onclick="addToWish('{{_id}}')"
+                              class="buttons__success"
+                              id="{{productname}}"
+                            >
+                              <i class="fa-solid fa-heart"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {{/each}}
+                {{else}}
+                  <div class="PageResults__container">
+                    <div class="search-empty-img">
+                      <img src="/images/ufo.png" />
+                      <br />
+                      <h4>Product not found</h4>
+                    </div>
+                  </div>
+                {{/if}}
+                {{#if itemsCount}}
+                  <div class="col-lg-12 pb-4">
+                    <div class="main-button">
+                      <button id="loadmore" onclick="loadNextPage()">Load More</button>
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Accessories End ***** -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" src="/javascripts/notify.js"></script>
+
+<script>
+let currentPage = {{currentPage}};
+
+function loadNextPage() {
+  currentPage++;
+  const loadMoreButton = document.getElementById("loadmore");
+  loadMoreButton.disabled = true;
+  loadMoreButton.parentNode.removeChild(loadMoreButton);
+
+  fetch(`/games?page=${currentPage}`)
+    .then(response => response.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const html = parser.parseFromString(data, "text/html");
+      const gamesContainer = document.querySelector("#products");
+      const newGames = html.querySelectorAll("#products");
+
+      newGames.forEach(game => {
+        gamesContainer.appendChild(game);
+      });
+
+      const remainingGamesCount = html.querySelector("#remainingGamesCount").innerHTML;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+  
+  function addToCart(productId) {
+    $.ajax({
+    type: "POST",
+    url: "/addtocart/" + productId,
+    success: function(data) {
+      // handle success response
+      notify.addNotification({
+          type: "success",
+          title: "Success!",
+          message: "Product added to cart"
+       });
+      {{!-- $('#' + productId).text('Go to cart')
+        .attr('onclick', "location.href='/gocart'"); --}}
+    },
+    error: function(xhr, status, error) {
+  // handle error response
+  var response = JSON.parse(xhr.responseText);
+  if (response.error === "Product already exists in cart") {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Product already exists in cart"
+    });
+  } else if (response.error === "Login to your account") {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Please log in to add products to cart"
+    });
+  } else {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Please log in to add products to cart"
+    });
+  }
+}
+  });
+  }
+
+  function addToWish(productId) {
+    $.ajax({
+    type: "POST",
+    url: "/addtowish/" + productId,
+    success: function(data) {
+      // handle success response
+      notify.addNotification({
+          type: "success",
+          title: "Success!",
+          message: "Product added to wish list"
+       });
+      $('#' + productId).text('Go to cart')
+        .attr('onclick', "location.href='/gowish'");
+    },
+    error: function(xhr, status, error) {
+  // handle error response
+  var response = JSON.parse(xhr.responseText);
+  if (response.error === "Product already exists in wish list") {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Product already exists in wish list"
+    });
+  } else if (response.error === "Login to your account") {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Please log in to add products"
+    });
+  } else {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Please log in to add products"
+    });
+  }
+}
+  });
+  }
+</script>
+
+<script src="/javascripts/choices.js"></script>
+
+<script>
+  const choices = new Choices('[data-trigger]', { searchEnabled: false,
+  itemSelectText: '', });
+</script>

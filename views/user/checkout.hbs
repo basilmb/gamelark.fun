@@ -1,0 +1,509 @@
+<section class="gradient-custom" style="background-color: #1f2122;">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">Billing details</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+
+            <div class="sa_billing_addresses_container">
+              <div class="saved_address_options">
+                <a
+                  class="sa_saved_billing_addresses_button"
+                  id="bill_to_new_address_button"
+                >Bill to a new address
+                </a>
+              </div>
+              <div id="address-modal" style="display: none;">
+                <div class="tm-block-col tm-col-account-settings">
+                  <div
+                    class="tm-bg-primary-dark tm-block tm-block-settings"
+                    style="border-radius: 0.25rem;"
+                  >
+                    <div class="enter-address">
+                      <h2 class="tm-block-title">Enter Address</h2>
+                      <a class="arrow-button" id="bill_to_old_address_button">
+                        <i class="fas fa-chevron-up"></i>
+                      </a>
+                    </div>
+                    <form
+                      method="post"
+                      action="/userdetails"
+                      class="tm-signup-form row"
+                      id="user-details-form"
+                    >
+                      <div class="form-group col-lg-6">
+                        <label for="fullname">Full Name</label>
+                        <input
+                          id="fullname"
+                          name="fullname"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="email">Email</label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="address">Address</label>
+                        <input
+                          id="address"
+                          name="address"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="city">City</label>
+                        <input
+                          id="city"
+                          name="city"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="state">State</label>
+                        <input
+                          id="state"
+                          name="state"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label for="zip">Zip</label>
+                        <input
+                          id="zip"
+                          name="zip"
+                          type="text"
+                          class="form-control validate"
+                        />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <input
+                          type="hidden"
+                          class="form-input"
+                          name="hemail"
+                          id="hemail"
+                          value={{userMail}}
+                        />
+                      </div>
+                      <div class="col-12">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-lg btn-block"
+                          style="background-color: #e75e8d; box-shadow: 0 0px 0px 0px #e75e8d; color: #fff;"
+                        >
+                          Add Details
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {{#each OneUserData}}
+                <div class="billing_addresses_container">
+                  <div
+                    class="address_container_billing"
+                    id="billing_address_container_131"
+                  >
+                    <p class="single_address" value=""><strong
+                      >{{fullname}}</strong><br />{{email}}<br />{{address}}<br
+                      />{{city}}<br />{{state}},
+                      {{zip}}</p>
+                    {{#if selected}}
+                      <div
+                        class="billing_to_this_address d-flex justify-content-center"
+                      >
+                        <div
+                          class="billing_address_selected"
+                          style="padding-bottom: 4px;"
+                        ><span>
+                            <i class="fa-solid fa-check"></i>
+                          </span><span>selected</span></div>
+                      </div>
+                    {{else}}
+                      <div
+                        class="bill_to_this_address_button d-flex justify-content-center"
+                        style=""
+                      >
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          style="background-color: #fff; color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d; padding: 6px 15px;"
+                          onclick="location.href='/selected/{{_id}}'"
+                        >
+                          select this address
+                        </button>
+                      </div>
+                    {{/if}}
+                    <div class="billing_address_edit_delete">
+                      <a
+                        class="saw-edit"
+                        id="edit_address_131"
+                        data-edit-id="131"
+                        href="/editdata/{{_id}}"
+                      >Edit</a>
+                      <a
+                        class="saw-delete"
+                        id="delete_address_131"
+                        data-delete-id="131"
+                        href="/deletedata/{{_id}}"
+                      >Delete</a>
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <p><strong>Expected shipping delivery</strong></p>
+            <p class="mb-0">12.10.2020 - 14.10.2020</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">Have coupon?</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <form method="post" action="/coupon" id="coupon-form">
+              <input
+                type="text"
+                id="code"
+                name="code"
+                placeholder="Coupon Code"
+                style="width: 100%; margin-bottom: 1rem; padding: 12px;"
+              />
+
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg btn-block"
+                style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d;"
+              >
+                Apply Coupon
+              </button>
+            </form>
+            {{#if notfound}}
+              <div class="error-message">Coupon not found</div>
+            {{/if}}
+            {{#if used}}
+              <div class="error-message">Coupon already used</div>
+            {{/if}}
+            {{#if success}}
+              <div class="error-message">Coupon applied successfully</div>
+            {{/if}}
+            {{#if limited}}
+              <div class="error-message">coupon has reached its maximum usage limit</div>
+            {{/if}}
+            {{#if expired}}
+              <div class="error-message">coupon has expired</div>
+            {{/if}}
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div
+            class="card-header py-3"
+            style="background-color: #27292a; color: #fff;"
+          >
+            <h5 class="mb-0">Cart - {{productsCount}} items</h5>
+          </div>
+          <div
+            class="card-body"
+            style="background-color: #27292a; color: #fff;"
+          >
+            {{#each cartlist}}
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                  style="background-color: #27292a; color: #fff;"
+                >
+                  <a href="#" style="color: #ffffff; font-size: 17px;">{{name}}
+                  </a>
+                  <span class="ps-2" style="color: grey;">x{{quantity}} </span>
+                  <span>₹ {{qnprice}}</span>
+                </li>
+              </ul>
+            {{/each}}
+            <hr />
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                style="background-color: #27292a; color: #fff;"
+              >
+                Products
+                <span>₹ {{totalprice}}</span>
+              </li>
+              {{#if success}}
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                style="background-color: #27292a; color: #fff;"
+              >
+                Coupon <a href="/removecoupon">[Remove]</a>
+                <span id="discount-value">- ₹ {{discountAmount}}</span>
+              </li>
+              {{/if}}
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center px-0"
+                style="background-color: #27292a; color: #fff;"
+              >
+                Shipping
+                <span>Gratis</span>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+                style="background-color: #27292a; color: #fff;"
+              >
+                <div>
+                  <strong>Total amount</strong>
+                  <strong>
+                    <p class="mb-0">(including VAT)</p>
+                  </strong>
+                </div>
+                <span><strong id="total-amount">₹
+                    {{totalamount}}</strong></span>
+              </li>
+            </ul>
+            <hr />
+            <form id="myForm" method="post" action="">
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input
+                    type="radio"
+                    id="option1"
+                    name="radio"
+                    value="Cash On Delivery"
+                    checked
+                  />
+                  <label for="option1">Cash On Delivery</label>
+                  <div class="check"></div>
+                </div>
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input
+                    type="radio"
+                    id="option2"
+                    name="radio"
+                    value="Online Payment"
+                  />
+                  <label for="option2">Online Payment</label>
+                  <div class="check"></div>
+                </div>
+              </div>
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input
+                    type="radio"
+                    id="option3"
+                    name="radio"
+                    value="User Wallet"
+                  />
+                  <label for="option3">User Wallet</label>
+                  <div class="check"></div>
+                </div>
+              </div>
+
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector" />
+                <label for="f-option4"> I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div>
+              <hr />
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg btn-block"
+                  style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d;"
+                >
+                  Proceed to checkout
+                </button>
+              </div>
+              <span id="error" class="text-danger"></span>
+              <span id="adress" class="text-danger"></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  // Get the button elements
+  var newAddressButton = document.getElementById('bill_to_new_address_button');
+  var oldAddressButton = document.getElementById('bill_to_old_address_button');
+
+  // Get the modal element
+  var modal = document.getElementById('address-modal');
+
+  // Listen for clicks on the new address button
+  newAddressButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    modal.style.display = 'block';
+  });
+
+  // Listen for clicks on the old address button
+  oldAddressButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    modal.style.display = 'none';
+  });
+</script>
+
+<script>
+const form = document.querySelector('#user-details-form');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  const formData = new FormData(form);
+  const url = '/userdetails';
+
+  try {
+    if (formData.size === 0 || !form.checkValidity()) { // check if form data is null or form is empty
+      throw new Error('Please fill out all required fields');
+    }
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(Object.fromEntries(formData.entries())),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('There was an error submitting the form');
+    }
+
+    const data = await response.json();
+    console.log(data);
+    location.reload();
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    if (!form.querySelector('.error-message')) {
+      const errorMessage = document.createElement('p');
+      errorMessage.className = 'error-message';
+      errorMessage.textContent = error.message;
+      form.appendChild(errorMessage);
+    }
+  }
+});
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('#myForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/confirmation',
+            type: 'POST',
+            data: $('#myForm').serialize(),
+            success: function(response) {
+                console.log(".....")
+                if (response.status == true) {
+                    razorpayPayment(response.order);
+                } 
+                if (response.url) {
+                    window.location.replace(response.url);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+if (jqXHR.status == 400) {
+    var error = jqXHR.responseJSON.error;
+    var alert = $('<div class="alert alert-danger" role="alert"></div>').text(error);
+    $('#myForm').prepend(alert);
+    setTimeout(function() {
+        alert.remove();
+    }, 3000);
+} else {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                }
+            }
+        });
+    });
+});
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_B9z5vLb5fhuvW5", 
+            "amount": order.amount,
+            "currency": "INR",
+            "name": "Gamlark", 
+            "description": "Test Transaction",
+            "image": "/images/glark.png",
+            "order_id": order.id, 
+            "handler": function (response) {
+             
+              
+                verifyPayment(response, order);
+            },
+            "prefill": {
+                "name": "Gaurav Kumar", //your customer's name
+                "email": "gaurav.kumar@example.com",
+                "contact": "9000090000"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verifyPayment',
+            type: 'POST',
+            data: {
+                payment: payment,
+                order: order
+            },
+            success: function(response) {
+                if (response.PaymentSuccess == true) {
+                    location.href = "/goconfirmation";
+                } else {
+                    alert('payment failed');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error: ' + textStatus + ' - ' + errorThrown);
+            }
+        });
+    }
+</script>

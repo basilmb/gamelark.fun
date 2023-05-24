@@ -1,0 +1,271 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <!-- partial -->
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <div class="d-flex align-items-center align-self-start">
+                  <h3 class="mb-0">₹ {{totalPriceSum}}</h3>
+                </div>
+              </div>
+              {{! <div class="col-3">
+                        <div class="icon icon-box-success ">
+                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                      </div> }}
+            </div>
+            <h6 class="text-muted font-weight-normal">Total amount</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <div class="d-flex align-items-center align-self-start">
+                  <h3 class="mb-0">₹ {{totalAmountSum}}</h3>
+                </div>
+              </div>
+              {{! <div class="col-3">
+                        <div class="icon icon-box-success">
+                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                      </div> }}
+            </div>
+            <h6 class="text-muted font-weight-normal">Discounted amount</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <div class="d-flex align-items-center align-self-start">
+                  <h3 class="mb-0">₹ {{couponDiscount}}</h3>
+                </div>
+              </div>
+              {{! <div class="col-3">
+                        <div class="icon icon-box-danger">
+                          <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                        </div>
+                      </div> }}
+            </div>
+            <h6 class="text-muted font-weight-normal">Coupon amount</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <div class="d-flex align-items-center align-self-start">
+                  <h3 class="mb-0">₹ {{totalWalletAmount}}</h3>
+                </div>
+              </div>
+              {{! <div class="col-3">
+                        <div class="icon icon-box-success ">
+                          <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                      </div> }}
+            </div>
+            <h6 class="text-muted font-weight-normal">User wallet</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Transaction History</h4>
+            <div style="display: block; width: 282px; height: 141px;">
+              <canvas id="doughnutChart"></canvas>
+            </div>
+            {{#each response}}
+              <div
+                class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3"
+              >
+                <div class="text-md-center text-xl-left">
+                  <h6 class="mb-1">{{_id}}</h6>
+                </div>
+                <div
+                  class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0"
+                >
+                  <h6 class="font-weight-bold mb-0">₹ {{totalAmountSum}}</h6>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <div class="container mt-4 px-5" id="order-print">
+      <div class="d-flex justify-content-between">
+        <h3>sales Report</h3>
+        <form
+          action="/admin/bydate"
+          class="d-flex"
+          onsubmit="return validateForm()"
+          method="POST"
+        >
+          <div class="p-2">
+            <input
+              class="form-control"
+              type="date"
+              value="{{from}}"
+              name="from"
+              id="startDate"
+              style="border-radius: 0.25rem; padding: 7px 28px;"
+            />
+          </div>
+          <div class="p-2">
+            <input
+              class="form-control"
+              type="date"
+              value="{{to}}"
+              name="to"
+              id="endDate"
+              style="border-radius: 0.25rem; padding: 7px 28px;"
+            />
+          </div>
+          <div class="p-2">
+            <button
+              class="btn-prim btn-block text-uppercase"
+              type="submit"
+              style="border-radius: 0.25rem; padding: 6px 28px;"
+            >Filter</button>
+          </div>
+        </form>
+
+        <div class="row">
+          <p id="error" style="color: #e75e8d; display: none;"></p>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Odrer ID</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Payment Method</th>
+            <th>Total Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orders}}
+            <tr>
+              <td>#{{orderid}}</td>
+              <td>{{date}}</td>
+              <td>
+                <div class="user-info">
+                  <div class="user-info__img">
+                    <img src="/users-image/{{userid.image.[0]}}" alt="User Img" />
+                  </div>
+                  <div class="user-info__basic">
+                    <h6 class="mb-0">{{userid.name}}</h6>
+                  </div>
+                </div>
+              </td>
+              {{#if status}}
+                <td>
+                  <span class="active-circle bg-success"></span>
+                  delivered
+                </td>
+              {{else}}
+                <td>
+                  <span class="active-circle bg-danger"></span>
+                  processing
+                </td>
+              {{/if}}
+              <td>{{paymentmethod}}</td>
+              <td>{{totalamount}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="">
+        <button
+          onclick="printDiv('order-print')"
+          class="btn-prim btn-block text-uppercase"
+        >
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function printDiv(divName) { var printContents =
+  document.getElementById(divName).innerHTML; var originalContents =
+  document.body.innerHTML; document.body.innerHTML = printContents;
+  window.print(); document.body.innerHTML = originalContents; }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() { const doughnutData
+  = JSON.parse(`{{{doughnutPieData}}}`); var ctx =
+  document.getElementById('doughnutChart').getContext('2d'); new Chart(ctx, {
+  type: 'doughnut', data: doughnutData, options: { responsive: true,
+  maintainAspectRatio: false, cutoutPercentage: 70, legend: { display: false } }
+  }); });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() { const barChartData
+  = JSON.parse(`{{{barChartData}}}`); var ctx =
+  document.getElementById('barChart').getContext('2d'); new Chart(ctx, { type:
+  'bar', data: barChartData, options: { responsive: true, maintainAspectRatio:
+  false, scales: { y: { beginAtZero: true, precision: 0, }, }, }, }); });
+</script>
+
+<script>
+    function validateForm() {
+        var startDate = new Date(document.getElementById("startDate").value);
+        var endDate = new Date(document.getElementById("endDate").value);
+        var currentDate = new Date();
+
+        if (startDate > currentDate || endDate > currentDate) {
+            displayErrorMessage("select dates within the allowed range");
+            return false;
+        }
+
+        if (startDate > endDate) {
+            displayErrorMessage("start date must be before the end date");
+            return false;
+        }
+
+        return true;
+    }
+
+    function displayErrorMessage(message) {
+        var errorElement = document.getElementById("error");
+        errorElement.innerText = message;
+        errorElement.style.display = "block";
+
+        setTimeout(function () {
+            errorElement.style.display = "none";
+        }, 5000); // Display the error message for 3 seconds (adjust the duration as needed)
+    }
+</script>
+

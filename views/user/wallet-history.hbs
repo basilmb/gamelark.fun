@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-profile">
+              <div class="row" style="opacity: 0; height: 0;">
+                <div
+                  class="col-lg-4 align-self-center ps-5"
+                  style="width: 50%;"
+                >
+                  <div class="main-info header-text">
+                    <p>Phone</p>
+                    <div class="main-border-button">
+                      <button
+                        onclick="location.href='/logout'"
+                        id="logout-button"
+                      >logout</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="heading-section mt-5">
+                        <h4><em>Wallet</em> History</h4>
+                      </div>
+                    </div>
+                    <div class="container mt-4 px-5">
+                      <div style="height: 400px; overflow: auto;">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Amount</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each wallet}}
+                              <tr>
+                                <td>{{date}}</td>
+                                <td>{{amount}}</td>
+                                {{#if status}}
+                                  <td>
+                                    <span
+                                      class="active-circle bg-success"
+                                    ></span>
+                                    credited
+                                  </td>
+                                {{else}}
+                                  <td>
+                                    <span
+                                      class="active-circle bg-danger"
+                                    ></span>
+                                    debited
+                                  </td>
+                                {{/if}}
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ***** Banner End ***** -->
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.tm-block-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+
+}
+
+.form-group label {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    padding: 19px 18px;
+    border-radius: 0;
+    height: 50px;
+}
+
+.form-control {
+    background-color: #2a3038;
+    color: #fff;
+    border: 0;
+}
+.form-control:focus {
+    background-color: #2a3038;
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 0 0.1rem rgb(180, 206, 233, 0.5);
+}
+
+.form-control{
+    border-radius: 0.25rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+@media (min-width: 992px){
+.col-lg-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+}
+
+.enter-address{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-message {
+    color: #e75e8d;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  

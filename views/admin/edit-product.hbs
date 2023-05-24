@@ -1,0 +1,163 @@
+<div class="w-100" id="home" style="background-color: #1f2122;">
+  <div class="container mt-5">
+    <div class="row tm-content-row">
+      {{#each findOneProduct.image}}
+        <div class="tm-block-col tm-col-avatar">
+          <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+            <h2 class="tm-block-title">Edit Image</h2>
+            <div class="tm-avatar-container">
+              <img
+                src="/product-images/{{this}}"
+                alt="Avatar"
+                class="tm-avatar img-fluid mb-4"
+                style="position: relative;"
+              />
+              <form
+                method="post"
+                action="/admin/deleteimage"
+                enctype="multipart/form-data"
+                class="tm-signup-form row"
+              >
+                <div class="form-group col-lg-6">
+                  <input
+                    type="hidden"
+                    class="form-input"
+                    name="img"
+                    id="img"
+                    value={{this}}
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <input
+                    type="hidden"
+                    class="form-input"
+                    name="id"
+                    id="id"
+                    value={{findOneProduct._id}}
+                  />
+                </div>
+                <button type="submit" class="btn-prim btn-block text-uppercase">
+                  Delete Image
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+      <div class="tm-block-col tm-col-account-settings">
+        <div
+          class="tm-bg-primary-dark tm-block tm-block-settings"
+          style="border-radius: 0.25rem;"
+        >
+          <h2 class="tm-block-title">Product Settings</h2>
+          <form
+            method="post"
+            action="/admin/update"
+            enctype="multipart/form-data"
+            class="tm-signup-form row"
+          >
+            <div class="form-group col-lg-6">
+              <label for="productname">Product Name</label>
+              <input
+                id="productname"
+                name="productname"
+                type="text"
+                class="form-control validate"
+                value="{{findOneProduct.productname}}"
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="category">Category</label>
+              <select
+                class="custom-select"
+                name="category"
+                style="border: 0px;
+                  background-color: #2a3038;
+                  color: #fff;"
+              >
+                <option
+                  value="{{findOneProduct.category.name}}"
+                >{{findOneProduct.category.name}}</option>
+                {{#each allcategorys}}
+                  <option value="{{name}}">{{name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="price">Price</label>
+              <input
+                id="price"
+                name="price"
+                type="text"
+                class="form-control validate"
+                value={{findOneProduct.price}}
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="disprice">Discounted price</label>
+              <input
+                id="disprice"
+                name="disprice"
+                type="text"
+                class="form-control validate"
+                value={{findOneProduct.disprice}}
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="discription">Description</label>
+              <input
+                id="description"
+                name="description"
+                type="text"
+                class="form-control validate"
+                value="{{findOneProduct.description}}"
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="stock">Stock</label>
+              <input
+                id="stock"
+                name="stock"
+                type="number"
+                class="form-control validate"
+                value="{{findOneProduct.stock}}"
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="image">image</label>
+              <input
+                id="image"
+                name="image"
+                type="file"
+                class="form-control validate"
+                multiple
+                accept="image/jpeg, image/png"
+              />
+            </div>
+            <div class="form-group col-lg-6">
+              <input
+                type="hidden"
+                class="form-input"
+                name="id"
+                id="id"
+                value={{findOneProduct._id}}
+              />
+            </div>
+            <div class="col-12 pt-4">
+              <button type="submit" class="btn-prim btn-block text-uppercase">
+                Edit Product
+              </button>
+            </div>
+          </form>
+          {{#if imgerr}}
+            <div class="error-message">Invalid file type. Only JPEG and PNG
+              images are allowed.</div>
+          {{/if}}
+          {{#if notimg}}
+            <div class="error-message">Image not found</div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

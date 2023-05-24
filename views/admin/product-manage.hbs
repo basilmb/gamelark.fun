@@ -1,0 +1,55 @@
+        <section class="main-content w-100" style="background-color: black;">
+			<div class="container mt-4 px-5">
+				<div class="d-flex justify-content-between">                                                                                     
+					<h3 class="title-5 m-b-35">Products</h3>
+					<div class="table-data__tool">
+					<div class="table-data__tool-right">
+					<button class="btn" onclick="location.href='/admin/addproduct'">
+					  <i class="fa-solid fa-plus"></i> &nbsp ADD</button>
+					</div>
+					 </div>
+					  </div>
+				  <table class="table">
+					<thead>
+					  <tr>
+						<th>ID</th>
+						<th>Image</th>
+						<th>Product</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Dis.Price</th>
+						<th>Stock</th>
+						<th>Actions</th>
+						<!-- <th>Actions</th> -->
+					  </tr>
+					</thead>
+					<tbody>
+					{{#each productInfo}}
+					  <tr>
+						<td>#{{productid}}</td>
+						<td><img src="/product-images/{{image.[0]}}" alt=""></td>
+						<td>{{productname}}</td>
+						<td>{{category.name}}</td>
+						<td>{{price}}</td>
+						<td>{{disprice}}</td>
+						<td>{{stock}}</td>
+						<td>
+					      <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" onclick="location.href='/admin/edit/{{_id}}'">
+							<i class="fas fa-pen"></i>
+						  </button>
+						  {{#if active}}
+						  <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="location.href='/admin/unlist/{{_id}}'">
+							<i class="fa-sharp fa-solid fa-eye-slash"></i>
+						  </button>
+						  {{else}}
+						  <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" onclick="location.href='/admin/list/{{_id}}'">
+							<i class="fa-sharp fa-solid fa-eye"></i>
+						  </button>
+						  {{/if}}
+						</td>
+					  </tr>
+					{{/each}}
+					</tbody>
+				  </table>
+			</div>
+		</section>

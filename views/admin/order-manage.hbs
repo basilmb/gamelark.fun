@@ -1,0 +1,78 @@
+<section class="main-content w-100" style="background-color: black;">
+  <div class="container mt-4 px-5">
+    <h3>Users Management</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Odrer ID</th>
+          <th>Date</th>
+          <th>User</th>
+          <th>Status</th>
+          <th>Return</th>
+          <th>Management</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+          <tr>
+            <td>#{{orderid}}</td>
+            <td>{{date}}</td>
+            <td>
+              <div class="user-info">
+                <div class="user-info__img">
+                  <img src="/users-image/{{userid.image.[0]}}" alt="User Img" />
+                </div>
+                <div class="user-info__basic">
+                  <h6 class="mb-0">{{userid.name}}</h6>
+                </div>
+              </div>
+            </td>
+            {{#if status}}
+              <td>
+                <span class="active-circle bg-success"></span>
+                delivered
+              </td>
+            {{else}}
+              <td>
+                <span class="active-circle bg-danger"></span>
+                processing
+              </td>
+            {{/if}}
+            {{#if request}}
+              <td>
+                <button class="btnr" onclick="location.href='/admin/accepted/{{_id}}'"><i class="fa-solid fa-check"></i></button>
+                <button class="btnr" onclick="location.href='/admin/canceled/{{_id}}'"><i class="fa-solid fa-xmark"></i></button>
+              </td>
+            {{else}}
+              <td>
+                <button class="btnr" style="opacity: 50%;"><i
+                    class="fa-solid fa-check"
+                  ></i></button>
+                <button class="btnr" style="opacity: 50%;"><i
+                    class="fa-solid fa-xmark"
+                  ></i></button>
+              </td>
+            {{/if}}
+            {{#if status}}
+              <td>
+                <button class="btng" style="opacity: 50%;">delivered</button>
+              </td>
+            {{else}}
+              <td>
+                <button
+                  class="btng"
+                  onclick="location.href='/admin/delivered/{{_id}}'"
+                >delivered</button>
+              </td>
+            {{/if}}
+            <td>
+              <button class="btn" onclick="location.href='/admin/vieworders/{{_id}}'">view</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <!-- page-body-wrapper ends -->
+  </div>
+</section>

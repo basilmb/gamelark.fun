@@ -1,0 +1,258 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-profile">
+              <div class="row" style="opacity: 0; height: 0;">
+                <div
+                  class="col-lg-4 align-self-center ps-5"
+                  style="width: 50%;"
+                >
+                  <div class="main-info header-text">
+                    <p>Phone</p>
+                    <div class="main-border-button">
+                      <button
+                        onclick="location.href='/logout'"
+                        id="logout-button"
+                      >logout</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div
+                  class="card-header py-3"
+                  style="background-color: #27292a; color: #fff;"
+                >
+                  <h5 class="mb-0">{{findOneProduct.productname}}</h5>
+                </div>
+                <div
+                  class="card-body"
+                  style="background-color: #27292a; color: #fff;"
+                >
+                  <!-- Single item -->
+                  <div class="row">
+                    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                      <!-- Image -->
+                      <div
+                        class="bg-image"
+                        data-mdb-ripple-color="light"
+                        id="01"
+                      >
+                        <img
+                          src="/product-images/{{findOneProduct.image.[0]}}"
+                          class="tile"
+                          data-scale="1.1"
+                        />
+                      </div>
+                      <div
+                        class="bg-image"
+                        data-mdb-ripple-color="light"
+                        id="02"
+                      >
+                        <img
+                          src="/product-images/{{findOneProduct.image.[1]}}"
+                          class="tile"
+                          data-scale="1.1"
+                        />
+                      </div>
+                      <div
+                        class="bg-image"
+                        data-mdb-ripple-color="light"
+                        id="03"
+                      >
+                        <img
+                          src="/product-images/{{findOneProduct.image.[2]}}"
+                          class="tile"
+                          data-scale="1.1"
+                        />
+                      </div>
+                      <!-- Image -->
+                      <!-- Price -->
+                      <h6 style="opacity: 0;">sfggsdgdf</h6>
+                      <p
+                        class="text-start text-md-start"
+                        style="margin-bottom: 0px; font-size: 20px;"
+                      >
+                        <strong>₹ {{findOneProduct.price}}</strong>
+                      </p>
+                      <p
+                        class="text-start text-md-start"
+                        style="color: #e75e8d; font-size: 15px; margin-top: 0px;"
+                      >
+                        <strong><span
+                            style="color: #b6b6b6; text-decoration:line-through;"
+                          >₹
+                            {{findOneProduct.disprice}}</span>&nbsp;&nbsp;&nbsp;Save
+                          20%</strong>
+                      </p>
+                      <!-- Price -->
+                    </div>
+
+                    <div class="col-lg-9 col-md-6 mb-4 mb-lg-0">
+                      <!-- Data -->
+                      <p style="margin-bottom: 1rem;"><strong
+                        >Description</strong></p>
+                      <p>{{findOneProduct.description}}</p>
+                      <!-- Data -->
+                      <!-- Product Color -->
+                      <div class="product-color">
+                        <span>Color</span>
+
+                        <div class="radion-choose">
+                          <div class="radion_btn">
+                            <input
+                              data-image="red"
+                              type="radio"
+                              id="red"
+                              name="color"
+                              value="red"
+                              onclick="showRedImage()"
+                              checked
+                            />
+                            <label for="red"><span></span></label>
+                            <div class="check"></div>
+                          </div>
+                          <div class="radion_btn">
+                            <input
+                              data-image="blue"
+                              type="radio"
+                              id="blue"
+                              name="color"
+                              value="blue"
+                              onclick="showWhiteImage()"
+                            />
+                            <label for="blue"><span></span></label>
+                            <div class="check"></div>
+                          </div>
+                          <div class="radion_btn me-5 mb-4">
+                            <input
+                              data-image="black"
+                              type="radio"
+                              id="black"
+                              name="color"
+                              value="black"
+                              onclick="showBlackImage()"
+                            />
+                            <label for="black"><span></span></label>
+                            <div class="check"></div>
+                          </div>
+
+                          <div>
+                            <button
+                              class="btn-single btn-primary px-3 me-2"
+                              style="background-color: #ffffff; box-shadow:0 0px 0px 0px #ffffff; color: #e75e8d; padding-top: .6rem; padding-bottom: .6rem; border: 0;"
+                              onclick="addToWish('{{findOneProduct._id}}');"
+                            >
+                              <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <button
+                              class="btn-single btn-primary px-3 me-2"
+                              style="background-color: #e75e8d; box-shadow:0 0px 0px 0px #e75e8d; padding: 6.5px 0px; border: 0;"
+                              onclick="addToCart('{{findOneProduct._id}}');"
+                            >
+                              Add to cart
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- Product Color -->
+                    </div>
+                  </div>
+                  <!-- Single item -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Banner End ***** -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/javascripts/notify.js"></script>
+
+<script>
+  function showRedImage() {
+    const redImage = document.getElementById('01');
+    redImage.style.display = "block";
+    const whiteImage = document.getElementById('02');
+    whiteImage.style.display = "none";
+    const blackImage = document.getElementById('03');
+    blackImage.style.display = "none";
+  }
+
+  function showWhiteImage() {
+    const redImage = document.getElementById('01');
+    redImage.style.display = "none";
+    const whiteImage = document.getElementById('02');
+    whiteImage.style.display = "block";
+    const blackImage = document.getElementById('03');
+    blackImage.style.display = "none";
+  }
+
+  function showBlackImage() {
+    const redImage = document.getElementById('01');
+    redImage.style.display = "none";
+    const whiteImage = document.getElementById('02');
+    whiteImage.style.display = "none";
+    const blackImage = document.getElementById('03');
+    blackImage.style.display = "block";
+  }
+</script>
+
+<script>
+function addToCart(productId) {
+  $.ajax({
+    type: "POST",
+    url: "/addtocart/" + productId,
+    success: function(data) {
+      // handle success response
+      notify.addNotification({
+          type: "success",
+          title: "Success!",
+          message: "Product added to cart"
+       });
+      $('#' + productId).text('Go to cart')
+        .attr('onclick', "location.href='/gocart'");
+    },
+    error: function(xhr, status, error) {
+      // handle error response
+      notify.addNotification({
+          type: "error",
+          title: "Error!",
+          message: "Login your account"
+       });
+    }
+  });
+}
+
+async function addToWish(productId) {
+  try {
+    const response = await $.ajax({
+      type: "POST",
+      url: "/addtowish/" + productId
+    });
+    notify.addNotification({
+      type: "success",
+      title: "Success!",
+      message: "Product added to wishlist"
+    });
+  } catch (error) {
+    notify.addNotification({
+      type: "error",
+      title: "Error!",
+      message: "Login your account"
+    });
+  }
+}
+</script>

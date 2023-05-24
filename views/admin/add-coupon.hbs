@@ -1,0 +1,77 @@
+<div class="w-100" id="home" style="background-color: #1f2122;">
+          <div class="container px-5" style="margin-top: 6rem;">
+            <!-- row -->
+            <div class="row tm-content-row" style="margin-top: 10px;">
+              <div class="tm-block-col tm-col-account-settings" style="padding-left: 0px; padding-right: 0px;">
+                <div class="tm-bg-primary-dark tm-block tm-block-settings" style="border-radius: 0.25rem;">
+                  <h2 class="tm-block-title pb-4">Coupon Settings</h2>
+                  <form method="post" action="/admin/createcoupon" class="tm-signup-form row">
+                    <div class="form-group col-lg-6">
+                      <label for="name">Coupon Name</label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="code">Coupon Code</label>
+                      <input
+                        id="code"
+                        name="code"
+                        type="code"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="disValue">Discount %Value</label>
+                      <input
+                        id="disValue"
+                        name="disValue"
+                        type="disValue"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="maxPurchars">Maximum Purchars</label>
+                      <input
+                        id="maxPurchars"
+                        name="maxPurchars"
+                        type="maxPurchars"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="maxUsers">MAX allowed ussers</label>
+                      <input
+                        id="maxUsers"
+                        name="maxUsers"
+                        type="maxUsers"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="expDate">Expiry date</label>
+                      <input
+                        id="expDate"
+                        name="expDate"
+                        type="date"
+                        class="form-control validate"
+                      />
+                    </div>
+                    <div class="col-12 pt-4">
+                      <button
+                        type="submit"
+                        class="btn btn-block text-uppercase"
+                        style="background-color: #e75e8d; line-height: 1.5;"
+                      >
+                        Add coupon
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
