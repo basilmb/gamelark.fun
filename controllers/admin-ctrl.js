@@ -117,7 +117,9 @@ const getHome = async function (req, res, next) {
     });
   } catch (error) {
     console.log(error);
-    next(error);
+    res.render("user/404", {
+      user: true,
+    });
   }
 };
 
@@ -151,7 +153,9 @@ const filterByDate = async function (req, res, next) {
     });
   } catch (error) {
     console.log(error);
-    next(error);
+    res.render("user/404", {
+      user: true,
+    });
   }
 };
 

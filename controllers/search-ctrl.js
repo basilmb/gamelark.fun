@@ -56,8 +56,6 @@ const searchProducts = async function (req, res) {
       consolesNotFond,
       accessoriesNotFond,
       searchQuery,
-      minPrice,
-      maxPrice,
     });
   } catch (error) {
     res.render("user/404", {
@@ -102,8 +100,6 @@ const searchGames = async function (req, res) {
       gamesInfo,
       gamesNotFond,
       searchQuery,
-      minPrice,
-      maxPrice,
     });
   } catch (error) {
     res.render("user/404", {
@@ -148,8 +144,6 @@ const searchConsoles = async function (req, res) {
       consolesInfo,
       consolesNotFond,
       searchQuery,
-      minPrice,
-      maxPrice,
     });
   } catch (error) {
     res.render("user/404", {
@@ -194,8 +188,6 @@ const searchAccessories = async function (req, res) {
       accessoriesInfo,
       accessoriesNotFond,
       searchQuery,
-      minPrice,
-      maxPrice,
     });
   } catch (error) {
     res.render("user/404", {

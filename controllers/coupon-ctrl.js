@@ -19,6 +19,7 @@ const addCoupon = function (req, res, next) {
 const createCoupon = async function (req, res, next) {
   try {
     const { name, code, disValue, maxPurchars, maxUsers, expDate } = req.body;
+    console.log(req.body);
 
     // Check if coupon with same code already exists
     const existingCoupon = await Coupon.findOne({ code });
@@ -45,7 +46,9 @@ const createCoupon = async function (req, res, next) {
     if (error.name === "ValidationError") {
       return res.status(400).json({ message: error.message });
     }
-    next(error);
+    res.render("user/404", {
+      adHome: true,
+    })
     console.log(error);
   }
 };

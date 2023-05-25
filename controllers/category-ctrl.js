@@ -30,7 +30,7 @@ const createCategory = async function (req, res, next) {
     const { name } = req.body;
 
     // Check if category with same name already exists
-    const existingCategory = await Category.findOne({ name });
+    const existingCategory = await Category.findOne({ name: { $regex: new RegExp('^' + name + '$', 'i') } });
     if (existingCategory) {
       return res.render("admin/category-manage", {
         adHome: true,

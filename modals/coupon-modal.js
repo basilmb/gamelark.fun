@@ -14,22 +14,18 @@ const couponSchema = new mongoose.Schema({
   disValue: {
     type: String,
     require: true,
-    unique: true
   },
   maxPurchars: {
     type: String,
     require: true,
-    unique: true
   },
   maxUsers: {
     type: String,
     require: true,
-    unique: true
   },
   expDate: {
     type: Date,
     require: true,
-    unique: true
   },
   active: {
     type: Boolean,
@@ -38,7 +34,6 @@ const couponSchema = new mongoose.Schema({
   count: {
     type: Number,
     require: true,
-    unique: true
   },
 });
 
