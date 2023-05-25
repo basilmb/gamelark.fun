@@ -55,4 +55,4 @@ var usersRouter = require("./routes/user");
 app.use("/admin", adminRouter);
 app.use("/", usersRouter);
 
-app.listen(3040,()=>console.log("basil"))
+app.listen(3000,()=>console.log("basil"))
