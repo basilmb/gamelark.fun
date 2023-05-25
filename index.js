@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
 const exSession = require('express-session')
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 const db = process.env.DATABASE;
 
