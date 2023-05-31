@@ -255,7 +255,7 @@ const userLogin = async function (req, res, next) {
   try {
     loginEmail = req.body.email;
     const user = await User.findOne({ email: loginEmail });
-    if (user != null && c == true) {
+    if (user != null && user.status == true) {
       const compare = await bcrypt.compare(req.body.logpass, user.password);
       if (compare == true && req.body.logpass != "") {
         req.session.loged = true;
