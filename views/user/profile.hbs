@@ -10,7 +10,8 @@
               <div class="row">
                 <div class="col-lg-4">
                   <img
-                    src="/users-image/{{userData.image.[0]}}"
+                    id="userImage"
+                    src="http://res.cloudinary.com/dleiipmgo/image/upload/v1685459516/{{userData.image.[0]}}.jpg"
                     alt=""
                     style="border-radius: 23px; width: 80%;"
                   />
@@ -84,10 +85,7 @@
                           style="position: relative; margin-bottom: 15px;"
                         />
                         <form
-                          method="post"
-                          action="/userimage"
-                          enctype="multipart/form-data"
-                          class="tm-signup-form row"
+                          id="uploadForm" enctype="multipart/form-data"
                         >
                           <div class="form-group">
                             <input
@@ -98,15 +96,6 @@
                               style="position: absolute; top: 0px; left: 0; opacity: 0; cursor: pointer; padding: 150px 0px;"
                               multiple
                               accept="image/jpeg, image/png"
-                            />
-                          </div>
-                          <div class="form-group col-lg-6">
-                            <input
-                              type="hidden"
-                              class="form-input"
-                              name="email"
-                              id="email"
-                              value={{logdata.email}}
                             />
                           </div>
                           <button
@@ -191,15 +180,6 @@
                             name="zip"
                             type="text"
                             class="form-control validate"
-                          />
-                        </div>
-                        <div class="form-group col-lg-6">
-                          <input
-                            type="hidden"
-                            class="form-input"
-                            name="hemail"
-                            id="hemail"
-                            value={{logdata.email}}
                           />
                         </div>
                         <div class="col-12 pt-4">
@@ -397,4 +377,41 @@
     var returnBtn = document.getElementById('returnBtn');
     returnBtn.disabled = true;
   }
+</script>
+
+<script>
+  // Handle form submission
+  $("#uploadForm").submit(function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    var formData = new FormData(this); // Create a FormData object from the form
+
+    // Send AJAX request to upload the image
+    $.ajax({
+      url: "/userimage",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // Image upload successful
+        if (response.imgerr) {
+          // Display error message if invalid file type
+          $(".error-message").text("Invalid file type. Only JPEG and PNG images are allowed.");
+        } else if (response.notimg) {
+          // Display error message if image not found
+          $(".error-message").text("Image not found.");
+        } else {
+          // Update the image source
+          $("#userImage").attr("src", "http://res.cloudinary.com/dleiipmgo/image/upload/v1685459516/" + response.image[0] + ".jpg");
+          $(".error-message").empty(); // Clear any previous error messages
+          location.reload(); // Reload the page
+        }
+      },
+      error: function() {
+        // Handle error case
+        console.log("Error occurred during image upload.");
+      }
+    });
+  });
 </script>
