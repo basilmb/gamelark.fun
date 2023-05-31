@@ -14,7 +14,7 @@ usersRouter.set('view engine','hbs')
 
 /* GET user*/
 usersRouter.get("/", userControler.getHome);
-usersRouter.get("/signup", middleware.userValidation, userControler.getSignup);
+usersRouter.get("/signup", userControler.getSignup);
 usersRouter.get("/otp", userControler.getOtp);
 usersRouter.get("/games", userControler.getGames);
 usersRouter.get("/consoles", userControler.getConsoles);
