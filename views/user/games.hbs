@@ -114,13 +114,22 @@
                           >₹{{disprice}}</li>
                         </ul>
                         <div class="d-flex justify-content-between w-100">
-                          <div class="main-btnw">
-                            <button
-                              onclick="addToCart('{{_id}}')"
-                              class="buttons__success"
-                              id="{{_id}}"
-                            >Add to cart</button>
-                          </div>
+                          {{#if stock}}
+                              <div class="main-btnw">
+                                <button
+                                  onclick="addToCart('{{_id}}')"
+                                  class="buttons__success"
+                                  id="{{_id}}"
+                                >Add to cart</button>
+                              </div>
+                            {{else}}
+                              <div class="main-btnw">
+                                <button
+                                  class="buttons__disabled"
+                                  style="color: #dc3545;"
+                                >Out of stock</button>
+                              </div>
+                            {{/if}}
                           <div class="main-btnp">
                             <button
                               onclick="addToWish('{{_id}}')"

@@ -75,6 +75,10 @@ const getGames = async function (req, res, next) {
       .limit(limit)
       .lean();
 
+      for (const game of gamesInfo) {
+        game.stock = game.stock > 0;
+      }
+
     const totalGamesCount = await Product.countDocuments({
       categoryname: "Games",
     });
@@ -109,6 +113,10 @@ const getConsoles = async function (req, res, next) {
       .limit(limit)
       .lean();
 
+      for (const console of consolesInfo) {
+        console.stock = console.stock > 0;
+      }
+
     const totalGamesCount = await Product.countDocuments({
       categoryname: "Consoles",
     });
@@ -142,6 +150,10 @@ const getAccessories = async function (req, res, next) {
       .skip(skip)
       .limit(limit)
       .lean();
+
+      for (const accessory of accessoriesInfo) {
+        accessory.stock = accessory.stock > 0;
+      }
 
     const totalGamesCount = await Product.countDocuments({
       categoryname: "Accessories",
